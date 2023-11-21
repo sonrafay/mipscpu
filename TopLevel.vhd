@@ -142,20 +142,13 @@ component Registers is
         register_2   : out std_logic_vector(31 downto 0) );
 end component;
 
-component ShiftLeft is
-  port( -- input
-        input  : in std_logic_vector(31 downto 0);
-
-        -- output
-        output : out std_logic_vector(31 downto 0) );
-end component;
-
 component ShiftLeft2 is
   port( -- input
-        input  : in std_logic_vector(25 downto 0);
+        input  : in std_logic_vector(31 downto 0);  -- 32-bit input
 
         -- output
-        output : out std_logic_vector(27 downto 0) );
+        output : out std_logic_vector(31 downto 0)  -- 32-bit output
+       );
 end component;
 
 component SignExtend is
