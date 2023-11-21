@@ -22,43 +22,41 @@ architecture Behavioral of Memory is
 begin
 
 -- Initialize memory with the specified instructions
-mem(0) <= "100011"; -- lw $t3, 300($s2)
-mem(1) <= "10010";
-mem(2) <= "01011";
-mem(3) <= "00000001";
-mem(4) <= "00101100";
+-- lw $t3, 300($s2)
+mem(0)  <= "10001110"; -- [31-24] opcode
+mem(1)  <= "10010010"; -- [23-16] source register $s2
+mem(2)  <= "10110000"; -- [15-8]  target register $t3
+mem(3)  <= "00010100"; -- [7-0]   immediate value 300
 
-mem(5) <= "101011"; -- sw $t6, 400($s7)
-mem(6) <= "10111";
-mem(7) <= "01110";
-mem(8) <= "00000001";
-mem(9) <= "10010000";
+-- sw $t6, 400($s7)
+mem(4)  <= "10101110"; -- [31-24] opcode
+mem(5)  <= "11110110"; -- [23-16] source register $s7
+mem(6)  <= "11100000"; -- [15-8]  target register $t6
+mem(7)  <= "00011001"; -- [7-0]   immediate value 400
 
-mem(10) <= "000000"; -- add $t5, $t3, $s1
-mem(11) <= "01011";
-mem(12) <= "10001";
-mem(13) <= "01101";
-mem(14) <= "00000";
-mem(15) <= "100000";
+-- add $t5, $t3, $s1
+mem(8)  <= "00000001"; -- [31-24] opcode
+mem(9)  <= "01011001"; -- [23-16] source register 1 $t3
+mem(10) <= "00011010"; -- [15-8]  source register 2 $s1
+mem(11) <= "10100000"; -- [7-0]   destination register $t5, shift, function code
 
-mem(16) <= "000101"; -- bne $s6, $t5, 200
-mem(17) <= "10110";
-mem(18) <= "01101";
-mem(19) <= "00000000";
-mem(20) <= "11001000";
+-- bne $s6, $t5, 200
+mem(12) <= "00010110"; -- [31-24] opcode
+mem(13) <= "11010101"; -- [23-16] source register 1 $s6
+mem(14) <= "01000000"; -- [15-8]  source register 2 $t5
+mem(15) <= "11001000"; -- [7-0]   immediate value 200
 
-mem(21) <= "000100"; -- beq $s6, $t5, 200
-mem(22) <= "10110";
-mem(23) <= "01101";
-mem(24) <= "00000000";
-mem(25) <= "11001000";
+-- beq $s6, $t5, 200
+mem(16) <= "00010010"; -- [31-24] opcode
+mem(17) <= "11010101"; -- [23-16] source register 1 $s6
+mem(18) <= "01000000"; -- [15-8]  source register 2 $t5
+mem(19) <= "11001000"; -- [7-0]   immediate value 200
 
-mem(26) <= "000000"; -- nand $t1, $t2, $t3
-mem(27) <= "01010";
-mem(28) <= "01011";
-mem(29) <= "01001";
-mem(30) <= "00000";
-mem(31) <= "100111";
+-- nand $t1, $t2, $t3
+mem(20) <= "00000001"; -- [31-24] opcode
+mem(21) <= "01010010"; -- [23-16] source register 1 $t2
+mem(22) <= "11010100"; -- [15-8]  source register 2 $t3
+mem(23) <= "00100111"; -- [7-0]   destination register $t1, shift, function code
 
 
   -- Memory write process
